@@ -1,0 +1,13 @@
+***********
+Hardware Reference
+***********
+
+.. toctree::
+   :maxdepth: 1
+ Techincal Reference Manual (PDF) <https://www.st.com/resource/en/reference_manual/dm00314099-stm32h742-stm32h743-753-and-stm32h750-value-line-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf>
+ Programming Manual (PDF) <https://www.st.com/resource/en/programming_manual/pm0253-stm32f7-series-and-stm32h7-series-cortexm7-processor-programming-manual-stmicroelectronics.pdf>
+ Datasheet (PDF) <https://www.st.com/resource/en/datasheet/stm32h753zi.pdf>
+ Errata Sheet (PDF) <https://www.st.com/resource/en/errata_sheet/es0396-stm32h750xb-and-stm32h753xi-device-limitations-stmicroelectronics.pdf>
+ Nucleo User Manual (PDF) <https://www.st.com/resource/en/user_manual/um2407-stm32h7-nucleo144-boards-mb1364-stmicroelectronics.pdf>
+ Nucleo Schematic (PDF) <https://www.st.com/content/ccc/resource/technical/layouts_and_diagrams/schematic_pack/group1/ea/2a/9a/99/b2/04/4d/0c/MB1364-H753ZI-C01_Schematic/files/MB1364-H753ZI-C01_Schematic.pdf/jcr:content/translations/en.MB1364-H753ZI-C01_Schematic.pdf>
+ nucleo-pinout/nucleo-pinout
