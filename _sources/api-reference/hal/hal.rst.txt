@@ -1,9 +1,0 @@
-HAL
-====
-
-.. toctree::
-   :maxdepth: 1
-   
-   usart/usart
-
-

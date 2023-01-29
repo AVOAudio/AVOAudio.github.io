@@ -1,13 +1,15 @@
 AVO Documentation
-=====
+====
 
 This is the documentation for AVO Framework.
 
 .. toctree::
+   :maxdepth: 1
    :hidden:
-
+   
    get-started/get-started
-   api-reference/api-reference
-   hardware-reference/hardware-reference
- 
-  
+   api-references/api-references
+   hardware-references/hardware-references
+
+
+

@@ -3,22 +3,23 @@ Get Started
 ***********
 
 Introduction
-=====
+====
 
 What You Need
-=====
+====
 Hardware
-~~~~~~~~
+^^^^
 Software
-~~~~~~~~
+^^^^
 
 Installation
-=====
+====
 IDE
-~~~~~~~~
+^^^^
 Manual Installation
-~~~~~~~~
+^^^^
 
-Build Your First 
-=====
+Build Your First
+====
+
 
