@@ -7,6 +7,8 @@
   <title>USART &mdash; AVO 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/dark_mode_css/dark.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +19,8 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/dark_mode_js/default_dark.js"></script>
+        <script src="../../../_static/dark_mode_js/theme_switcher.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -56,6 +60,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../hardware-references/hardware-references.html">Hardware References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflow/workflow.html">Workflow</a></li>
 </ul>
 
         </div>
@@ -88,15 +93,79 @@
 <h1>USART<a class="headerlink" href="#usart" title="Permalink to this heading"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>A Universal Asynchronous Receiver/Transmitter (UART) is a hardware feature that handles communication
+(i.e., timing requirements and data framing) using widely-adopted asynchronous serial communication
+interfaces, such as RS232, RS422, and RS485. A UART provides a widely adopted and cheap method to realize
+full-duplex or half-duplex data exchange among different devices.</p>
 </section>
 <section id="functional-overview">
 <h2>Functional Overview<a class="headerlink" href="#functional-overview" title="Permalink to this heading"></a></h2>
+<p>A typical programming workflow is broken down into the sections provided below:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#passing-usart-cfg"><span class="std std-ref">USART Configuration</span></a> - Setting baudrate, USART channel id, UASRT features</p></li>
+<li><p><a class="reference internal" href="#passing-dma-cfg"><span class="std std-ref">DMA Configuration</span></a> - Setting DMA Channel, DMA featurues</p></li>
+<li><p><a class="reference internal" href="#passing-io-cfg"><span class="std std-ref">IO Configuration</span></a> - Setting USART interrupts</p></li>
+</ol>
+<section id="usart-configuration">
+<span id="passing-usart-cfg"></span><h3>USART Configuration<a class="headerlink" href="#usart-configuration" title="Permalink to this heading"></a></h3>
+<p>The USART configuration is responsible for the setup of the USART hardware which is made up of the following members below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">USART_CHANNEL_ID_t</span><span class="w"> </span><span class="n">channelID</span><span class="p">;</span>
+<span class="w">  </span><span class="n">USART_CLK_SRC_t</span><span class="w"> </span><span class="n">clkSrc</span><span class="p">;</span>
+<span class="w">  </span><span class="n">USART_BAUDRATE_t</span><span class="w"> </span><span class="n">baudrate</span><span class="p">;</span>
+<span class="w">  </span><span class="n">DMA_SETUP_CFG_t</span><span class="o">*</span><span class="w"> </span><span class="n">DMA_SETUP_CFG</span><span class="p">;</span>
+<span class="w">  </span><span class="n">IO_SETUP_CFG_t</span><span class="o">*</span><span class="w"> </span><span class="n">IO_SETUP_CFG</span><span class="p">;</span>
+<span class="w">  </span><span class="n">USART_FEATURES_t</span><span class="w"> </span><span class="n">USART_FEATURES</span><span class="p">;</span>
+<span class="p">}</span><span class="n">USART_SETUP_CFG_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">USART configuration struct members</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Members to Configure</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>channel ID</p></td>
+<td><p>Assign USART to a channel ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>Clock Source</p></td>
+<td><p>Specify which kernal clock to use</p></td>
+</tr>
+<tr class="row-even"><td><p>Baudrate</p></td>
+<td><p>Specify the baudrate that the USART will run on</p></td>
+</tr>
+<tr class="row-odd"><td><p>USART Features</p></td>
+<td><p>Enable certain features for the USART to operate on</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more infomation please refer to the API Reference section.</p>
+</div>
+</section>
+<section id="dma-configuration">
+<span id="passing-dma-cfg"></span><h3>DMA Configuration<a class="headerlink" href="#dma-configuration" title="Permalink to this heading"></a></h3>
+<p>TBD</p>
+</section>
+<section id="io-configuration">
+<span id="passing-io-cfg"></span><h3>IO Configuration<a class="headerlink" href="#io-configuration" title="Permalink to this heading"></a></h3>
+<p>TBD</p>
+</section>
 </section>
 <section id="application-examples">
 <h2>Application Examples<a class="headerlink" href="#application-examples" title="Permalink to this heading"></a></h2>
+<p>TBD</p>
 </section>
 <section id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h2>
+<p>TBD</p>
 </section>
 </section>
 
@@ -111,7 +180,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Cleo.</p>
+    <p>&#169; Copyright 2023, AVO Audio.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

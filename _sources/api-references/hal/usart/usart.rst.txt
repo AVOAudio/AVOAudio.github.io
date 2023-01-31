@@ -4,15 +4,78 @@ USART
 
 Introduction
 ====
+A Universal Asynchronous Receiver/Transmitter (UART) is a hardware feature that handles communication 
+(i.e., timing requirements and data framing) using widely-adopted asynchronous serial communication 
+interfaces, such as RS232, RS422, and RS485. A UART provides a widely adopted and cheap method to realize 
+full-duplex or half-duplex data exchange among different devices.
 
 Functional Overview
 ====
+A typical programming workflow is broken down into the sections provided below:
+
+1. :ref:`passing-usart-cfg` - Setting baudrate, USART channel id, UASRT features
+2. :ref:`passing-dma-cfg` - Setting DMA Channel, DMA featurues
+3. :ref:`passing-io-cfg` - Setting USART interrupts
+
+.. _passing-usart-cfg:
+
+USART Configuration 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The USART configuration is responsible for the setup of the USART hardware which is made up of the following members below:
+
+.. code-block:: c
+
+ typedef struct {
+   USART_CHANNEL_ID_t channelID;
+   USART_CLK_SRC_t clkSrc;
+   USART_BAUDRATE_t baudrate;
+   DMA_SETUP_CFG_t* DMA_SETUP_CFG;
+   IO_SETUP_CFG_t* IO_SETUP_CFG;
+   USART_FEATURES_t USART_FEATURES;
+ }USART_SETUP_CFG_t; 
+  
+.. list-table:: USART configuration struct members
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Members to Configure
+     - Description
+   * - channel ID
+     - Assign USART to a channel ID 
+   * - Clock Source
+     - Specify which kernal clock to use
+   * - Baudrate
+     - Specify the baudrate that the USART will run on
+   * - USART Features
+     - Enable certain features for the USART to operate on
+	 
+.. note::
+
+   For more infomation please refer to the API Reference section.
+   
+.. _passing-dma-cfg:
+
+DMA Configuration 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TBD
+
+.. _passing-io-cfg:
+
+IO Configuration 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TBD
 
 Application Examples
 ====
 
+TBD
+
 API Reference
 ====
 
+TBD
 
 
