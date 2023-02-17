@@ -3,23 +3,25 @@ Get Started
 ***********
 
 Introduction
-====
+============
 
 What You Need
-====
+=============
 Hardware
-^^^^
+^^^^^^^^
+
 Software
-^^^^
+^^^^^^^^
+All our repos are stored in the AVOAudio organization on Github. To clone the software and begin development follow the instructions in the :doc:`Github Workflow </workflow/github/github>`.
 
 Installation
-====
+============
 IDE
-^^^^
+^^^
 Manual Installation
-^^^^
+^^^^^^^^^^^^^^^^^^^
 
 Build Your First
-====
+================
 
 

@@ -1,5 +1,5 @@
 Nucleo Pinout
-====
+=============
 
 .. figure:: nucleo_h743zi_zio_left_2019_8_29.png
 .. figure:: nucleo_h743zi_zio_right_2019_8_29.png

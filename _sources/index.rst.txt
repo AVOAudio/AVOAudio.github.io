@@ -1,5 +1,5 @@
 AVO Documentation
-====
+=================
 
 This is the documentation for AVO Framework.
 
@@ -11,6 +11,3 @@ This is the documentation for AVO Framework.
    api-references/api-references
    hardware-references/hardware-references
    workflow/workflow
-
-
-

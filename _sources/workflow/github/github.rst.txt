@@ -1,0 +1,152 @@
+************
+Git / Github
+************
+
+Introduction
+============
+
+All the repositories in AVO are stored under the AVOAudio Github organization. To begin to development, follow these steps:
+
+.. rst-class:: numbered-list
+
+#. Create a Github account if you do not have one yet.
+#. Setup SSH keys. This will be covered in detail in the :ref:`Generating SSH Keys <ssh keys>` Section below.
+#. Request an admin add your account to the AVOAudio Github organization and assign you to your team.
+#. Use TortoiseGit or run ``git clone --recurse-submodules https://github.com/avoaudio/avo.git`` to clone the code locally and begin development.
+
+In general, once you have been assigned a level 3 issue (``Investigation`` / ``Change Request``) (covered in the :doc:`Jira workflow </workflow/jira/jira>` document), you will create a branch with the appropriate name (``AVO-#``) off the latest release tag and begin your development.
+
+Note: The latest release task will always be at or immediately upstream of the master branch.
+
+Your workflow will involve making changes, building locally using the provided docker script, flashing, and debugging. Once you are satisfied with your changes AND your code is in a :emphasis:`buildable` state, you can commit to the ``AVO-#`` branch you are working on.
+
+If you've finished all the changes needed to complete the ``Change Request`` you can start a pull request from Jira / Github to merge your branch into master.
+
+.. _ssh keys:
+
+Generating SSH Keys
+===================
+
+To clone and later commit code to/from the AVOAudio organization, you need to two things:
+
+ - You must have an SSH key associated with your account.
+ - You must be added to a team in the AVOAudio organization that has write access.
+
+This document will cover key generation in Windows as it's assumed you can figure it out if you're on Linux. Also I don't have a Mac so that's also up to you (Sorry, not sorry).
+
+Download and install `putty <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_ then launch PuTTYgen.exe. You will see the following window pop up.
+
+.. figure:: puttygen.png
+   :align: center
+
+   PuTTYgen
+
+Ensure RSA is selected in Parameters section and click the ``Generate`` button.
+
+.. figure:: puttygen_generate.png
+   :align: center
+
+   PuTTYgen - Generating RSA key
+
+Move the mouse over the blank area to generate additional randomness for the key.
+
+Once the key is generated click on the ``Save public key`` and the ``Save private key`` buttons to save them to your desired location.
+
+Finally, copy the entirety of your key in the Key section to your clipboard (starting with the ssh-rsa line).
+
+Note: that the key is larger than what's currently visible in the box.
+
+.. figure:: sample_key_1.png
+   :align: center
+
+   PuTTYgen - Copying public key (Part 1)
+
+Observe that they key doesn't end at XGCU in the above image.
+
+.. figure:: sample_key_2.png
+   :align: center
+
+   PuTTYgen - Copying public key (Part 2)
+
+Next open your browser and sign into your Github account. Click on your profile picture on the right and go to the Settings option (second last option).
+
+.. figure:: github_profile_dropdown.png
+   :align: center
+
+   Github profile dropdown
+
+Find the SSH section (currently located under the Access subcategory).
+
+.. figure:: github_settings_ssh.png
+   :align: center
+
+   Github SSH and GPG keys
+
+Click on the ``New SSH key`` button
+
+.. figure:: github_new_ssh_key_button.png
+   :align: center
+
+   Github New SSH key
+
+Finally, give it a title and paste your public key from your system clipboard. Then click the ``Add SSH key`` button.
+
+Now that we have told Github what our public key is we can clone the repository. You can use whatever tool you desire, but we will cover `TortoiseGit <https://tortoisegit.org/download/>`_ on Windows. Assuming a typical installation, open up explorer.exe to the directory you want to clone to, right click and then select ``Git Clone...``. You will a dialog like the following pop up.
+
+.. figure:: tortoise_clone.png
+   :align: center
+
+   TortoiseGit Clone AVO repo
+
+The URL can be either:
+
+ - ``git@github.com:avoaudio/avo.git``
+ - ``https://github.com/AVOAudio/AVO``
+
+The first one clones the repo through SSH (which you just set up). The second clones through HTTPS. It's recommended to check Load Putty Key and point to your private ppk that you saved earlier. Also, I'd recommend ensuring Recursive is checked to clone the submodules. If you want to do that separately after the fact you can do a Submodule update later.
+
+Note: As mentioned earlier the second requirement is that you must be added to the AVOAudio organization. If you get authentication errors be sure to contact your administrator.
+
+Configuring your git settings
+=============================
+
+User / email
+^^^^^^^^^^^^
+
+At this time we do not require professional names / emails on your commits. In fact, you don't even need consistent names (although consistent emails is preferred).
+This is only true since our team is quite small and we don't need to tract that info very stringently. In the future it would be recommended to have you git name be configured to your full name and your email to be the company email given to you.
+
+To change these settings use the following commands:
+
+ - ``git config --global user.name 'Mr. Anderson'``
+ - ``git config --global user.email 'theone@avoaudio.com'``
+
+Note: Be sure to replace Mr. Anderson with your own name and email. Okay Neo?
+
+AutoCRLF
+^^^^^^^^
+
+Since our repo is development platform-agnostic, we need to handle the CR LF problem. This is a little problem that I hope you never have to deal with.
+
+Essentially, each platform (Windows / Linux / Mac OS X) has different line endings. This means that in a text file, the ASCII sequence for noting the end of the line is different. Modern Macs have conformed to follow Windows' line endings of CRLF. CRLF means it ends in 0x0D0A. Linux ends in just LF. Mac used to end in just CR. Either way, it's a mess.
+
+Git came out with a setting to try and help deal with the issue of having different line endings on different platforms. This setting is ``autocrlf``. When set to ``true``, this setting keeps text files in the repo ending in LF. Then when you check out the text files on Mac or Windows, git automatically changes the text files' line endings to CRLF to conform with the system standard. If you checkout the code base on a Linux computer, the line endings remain as LF.
+
+This sounds amazing! Except there's a problem. Sometimes you want to mix operating systems and you want to use the same files. This is exactly the problem we have with our Docker build system. If you are developing on Windows / Mac and you run the docker build script, a Linux container will launch and load the local repository into its file system. It will then try to run the ``make.sh`` which will have had its line endings converted to CRLF. Unfortunately, bash is not smart enough to know what's going on and will fail to execute the shell script.
+
+This problem is solved by ensuring to tell git to ignore ``.sh`` files when checking out the repository. This is achieved with a custom ``.gitattributes`` file in the avo repo.
+
+Note: The ``.gitattributes`` file will override your global git settings. So if you have ``autocrlf`` set to ``true`` (which is generally recommended imo), the ``.sh`` files will be ignored.
+
+Note: If you want to enable autocrlf on your system use the following command:
+
+    ``git config --global core.autocrlf true``
+
+A note on teams
+===============
+
+You must be added to the organization and added to a team. For now, we only have one team: "Dream Team".
+
+The "Dream Team" allows admin access to all repositories. In the future, there will be multiple teams with specializations. Additionally, those teams will not have admin access to the repos.
+
+

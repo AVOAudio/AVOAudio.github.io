@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="C C++" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git / Github &mdash; AVO 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/dark_mode_css/dark.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/dark_mode_js/default_dark.js"></script>
+        <script src="../../_static/dark_mode_js/theme_switcher.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Jira" href="../jira/jira.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> AVO
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../get-started/get-started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api-references/api-references.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hardware-references/hardware-references.html">Hardware References</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Workflow</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../jira/jira.html">Jira</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Git / Github</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-ssh-keys">Generating SSH Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-your-git-settings">Configuring your git settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-email">User / email</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autocrlf">AutoCRLF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#a-note-on-teams">A note on teams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AVO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../workflow.html">Workflow</a></li>
+      <li class="breadcrumb-item active">Git / Github</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/workflow/github/github.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="git-github">
+<h1>Git / Github<a class="headerlink" href="#git-github" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>All the repositories in AVO are stored under the AVOAudio Github organization. To begin to development, follow these steps:</p>
+<ol class="numbered-list arabic simple">
+<li><p>Create a Github account if you do not have one yet.</p></li>
+<li><p>Setup SSH keys. This will be covered in detail in the <a class="reference internal" href="#ssh-keys"><span class="std std-ref">Generating SSH Keys</span></a> Section below.</p></li>
+<li><p>Request an admin add your account to the AVOAudio Github organization and assign you to your team.</p></li>
+<li><p>Use TortoiseGit or run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">--recurse-submodules</span> <span class="pre">https://github.com/avoaudio/avo.git</span></code> to clone the code locally and begin development.</p></li>
+</ol>
+<p>In general, once you have been assigned a level 3 issue (<code class="docutils literal notranslate"><span class="pre">Investigation</span></code> / <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Request</span></code>) (covered in the <a class="reference internal" href="../jira/jira.html"><span class="doc">Jira workflow</span></a> document), you will create a branch with the appropriate name (<code class="docutils literal notranslate"><span class="pre">AVO-#</span></code>) off the latest release tag and begin your development.</p>
+<p>Note: The latest release task will always be at or immediately upstream of the master branch.</p>
+<p>Your workflow will involve making changes, building locally using the provided docker script, flashing, and debugging. Once you are satisfied with your changes AND your code is in a <em>buildable</em> state, you can commit to the <code class="docutils literal notranslate"><span class="pre">AVO-#</span></code> branch you are working on.</p>
+<p>If you've finished all the changes needed to complete the <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Request</span></code> you can start a pull request from Jira / Github to merge your branch into master.</p>
+</section>
+<section id="generating-ssh-keys">
+<span id="ssh-keys"></span><h2>Generating SSH Keys<a class="headerlink" href="#generating-ssh-keys" title="Permalink to this heading"></a></h2>
+<p>To clone and later commit code to/from the AVOAudio organization, you need to two things:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You must have an SSH key associated with your account.</p></li>
+<li><p>You must be added to a team in the AVOAudio organization that has write access.</p></li>
+</ul>
+</div></blockquote>
+<p>This document will cover key generation in Windows as it's assumed you can figure it out if you're on Linux. Also I don't have a Mac so that's also up to you (Sorry, not sorry).</p>
+<p>Download and install <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">putty</a> then launch PuTTYgen.exe. You will see the following window pop up.</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/puttygen.png" src="../../_images/puttygen.png" />
+<figcaption>
+<p><span class="caption-text">PuTTYgen</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Ensure RSA is selected in Parameters section and click the <code class="docutils literal notranslate"><span class="pre">Generate</span></code> button.</p>
+<figure class="align-center" id="id2">
+<img alt="../../_images/puttygen_generate.png" src="../../_images/puttygen_generate.png" />
+<figcaption>
+<p><span class="caption-text">PuTTYgen - Generating RSA key</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Move the mouse over the blank area to generate additional randomness for the key.</p>
+<p>Once the key is generated click on the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">public</span> <span class="pre">key</span></code> and the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">private</span> <span class="pre">key</span></code> buttons to save them to your desired location.</p>
+<p>Finally, copy the entirety of your key in the Key section to your clipboard (starting with the ssh-rsa line).</p>
+<p>Note: that the key is larger than what's currently visible in the box.</p>
+<figure class="align-center" id="id3">
+<img alt="../../_images/sample_key_1.png" src="../../_images/sample_key_1.png" />
+<figcaption>
+<p><span class="caption-text">PuTTYgen - Copying public key (Part 1)</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Observe that they key doesn't end at XGCU in the above image.</p>
+<figure class="align-center" id="id4">
+<img alt="../../_images/sample_key_2.png" src="../../_images/sample_key_2.png" />
+<figcaption>
+<p><span class="caption-text">PuTTYgen - Copying public key (Part 2)</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Next open your browser and sign into your Github account. Click on your profile picture on the right and go to the Settings option (second last option).</p>
+<figure class="align-center" id="id5">
+<img alt="../../_images/github_profile_dropdown.png" src="../../_images/github_profile_dropdown.png" />
+<figcaption>
+<p><span class="caption-text">Github profile dropdown</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Find the SSH section (currently located under the Access subcategory).</p>
+<figure class="align-center" id="id6">
+<img alt="../../_images/github_settings_ssh.png" src="../../_images/github_settings_ssh.png" />
+<figcaption>
+<p><span class="caption-text">Github SSH and GPG keys</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Click on the <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> button</p>
+<figure class="align-center" id="id7">
+<img alt="../../_images/github_new_ssh_key_button.png" src="../../_images/github_new_ssh_key_button.png" />
+<figcaption>
+<p><span class="caption-text">Github New SSH key</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Finally, give it a title and paste your public key from your system clipboard. Then click the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code> button.</p>
+<p>Now that we have told Github what our public key is we can clone the repository. You can use whatever tool you desire, but we will cover <a class="reference external" href="https://tortoisegit.org/download/">TortoiseGit</a> on Windows. Assuming a typical installation, open up explorer.exe to the directory you want to clone to, right click and then select <code class="docutils literal notranslate"><span class="pre">Git</span> <span class="pre">Clone...</span></code>. You will a dialog like the following pop up.</p>
+<figure class="align-center" id="id8">
+<img alt="../../_images/tortoise_clone.png" src="../../_images/tortoise_clone.png" />
+<figcaption>
+<p><span class="caption-text">TortoiseGit Clone AVO repo</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The URL can be either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git&#64;github.com:avoaudio/avo.git</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://github.com/AVOAudio/AVO</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>The first one clones the repo through SSH (which you just set up). The second clones through HTTPS. It's recommended to check Load Putty Key and point to your private ppk that you saved earlier. Also, I'd recommend ensuring Recursive is checked to clone the submodules. If you want to do that separately after the fact you can do a Submodule update later.</p>
+<p>Note: As mentioned earlier the second requirement is that you must be added to the AVOAudio organization. If you get authentication errors be sure to contact your administrator.</p>
+</section>
+<section id="configuring-your-git-settings">
+<h2>Configuring your git settings<a class="headerlink" href="#configuring-your-git-settings" title="Permalink to this heading"></a></h2>
+<section id="user-email">
+<h3>User / email<a class="headerlink" href="#user-email" title="Permalink to this heading"></a></h3>
+<p>At this time we do not require professional names / emails on your commits. In fact, you don't even need consistent names (although consistent emails is preferred).
+This is only true since our team is quite small and we don't need to tract that info very stringently. In the future it would be recommended to have you git name be configured to your full name and your email to be the company email given to you.</p>
+<p>To change these settings use the following commands:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">'Mr.</span> <span class="pre">Anderson'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">'theone&#64;avoaudio.com'</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Note: Be sure to replace Mr. Anderson with your own name and email. Okay Neo?</p>
+</section>
+<section id="autocrlf">
+<h3>AutoCRLF<a class="headerlink" href="#autocrlf" title="Permalink to this heading"></a></h3>
+<p>Since our repo is development platform-agnostic, we need to handle the CR LF problem. This is a little problem that I hope you never have to deal with.</p>
+<p>Essentially, each platform (Windows / Linux / Mac OS X) has different line endings. This means that in a text file, the ASCII sequence for noting the end of the line is different. Modern Macs have conformed to follow Windows' line endings of CRLF. CRLF means it ends in 0x0D0A. Linux ends in just LF. Mac used to end in just CR. Either way, it's a mess.</p>
+<p>Git came out with a setting to try and help deal with the issue of having different line endings on different platforms. This setting is <code class="docutils literal notranslate"><span class="pre">autocrlf</span></code>. When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, this setting keeps text files in the repo ending in LF. Then when you check out the text files on Mac or Windows, git automatically changes the text files' line endings to CRLF to conform with the system standard. If you checkout the code base on a Linux computer, the line endings remain as LF.</p>
+<p>This sounds amazing! Except there's a problem. Sometimes you want to mix operating systems and you want to use the same files. This is exactly the problem we have with our Docker build system. If you are developing on Windows / Mac and you run the docker build script, a Linux container will launch and load the local repository into its file system. It will then try to run the <code class="docutils literal notranslate"><span class="pre">make.sh</span></code> which will have had its line endings converted to CRLF. Unfortunately, bash is not smart enough to know what's going on and will fail to execute the shell script.</p>
+<p>This problem is solved by ensuring to tell git to ignore <code class="docutils literal notranslate"><span class="pre">.sh</span></code> files when checking out the repository. This is achieved with a custom <code class="docutils literal notranslate"><span class="pre">.gitattributes</span></code> file in the avo repo.</p>
+<p>Note: The <code class="docutils literal notranslate"><span class="pre">.gitattributes</span></code> file will override your global git settings. So if you have <code class="docutils literal notranslate"><span class="pre">autocrlf</span></code> set to <code class="docutils literal notranslate"><span class="pre">true</span></code> (which is generally recommended imo), the <code class="docutils literal notranslate"><span class="pre">.sh</span></code> files will be ignored.</p>
+<p>Note: If you want to enable autocrlf on your system use the following command:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">core.autocrlf</span> <span class="pre">true</span></code></p>
+</div></blockquote>
+</section>
+</section>
+<section id="a-note-on-teams">
+<h2>A note on teams<a class="headerlink" href="#a-note-on-teams" title="Permalink to this heading"></a></h2>
+<p>You must be added to the organization and added to a team. For now, we only have one team: &quot;Dream Team&quot;.</p>
+<p>The &quot;Dream Team&quot; allows admin access to all repositories. In the future, there will be multiple teams with specializations. Additionally, those teams will not have admin access to the repos.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../jira/jira.html" class="btn btn-neutral float-left" title="Jira" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, AVO Audio.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

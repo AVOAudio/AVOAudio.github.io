@@ -1,0 +1,69 @@
+****
+Jira
+****
+
+Introduction
+============
+In Jira we have 5 different issue types:
+
+.. list-table:: Issue Types
+   :widths: 30 30 20
+   :header-rows: 1
+
+   * - Issue Type
+     - .. centered:: Hierarchy level
+     - .. centered:: Icon
+   * - ``Brigade``
+     - .. centered:: 1
+     - .. image:: brigade.png
+         :width: 20
+         :align: center
+   * - ``Bug``
+     - .. centered:: 2
+     - .. image:: bug.png
+         :width: 20
+         :align: center
+   * - ``Task``
+     - .. centered:: 2
+     - .. image:: task.png
+         :width: 20
+         :align: center
+   * - ``Change Request``
+     - .. centered:: 3
+     - .. image:: change_request.png
+         :width: 20
+         :align: center
+   * - ``Investigation``
+     - .. centered:: 3
+     - .. image:: investigation.png
+         :width: 20
+         :align: center
+
+The numbers beside the issue type indicate the hierarchy level within the company.
+
+----
+
+Breakdown
+=========
+A ``Brigade`` *(1)* is a collection of tasks. This a top level concept.
+
+An example of this would be:
+    Get Infrared communication working
+
+A ``Bug`` *(2)* is some issue that has been reported. A Bug's description will include exactly what the issue is and the steps to reproduce. A bug will trigger an ``Investigation`` sub-task.
+
+A ``Task`` *(2)* is a specific task or feature that is part of the ``Brigade``. An example of this would be:
+
+An example of this would be:
+    Get Infrared communication working
+
+A ``Change Request`` *(3)* specifies exactly how you would go about the task and what steps were required to attain a solution. It is the ultimate form of accountability. The unique ID generated for ``Change Requests`` is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:
+
+An example of this would be:
+    Use PWM's Input Capture mode to decode the IR signal received from the IR hardware module.
+
+An ``Investigation`` *(3)* is some work where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug.
+
+Workflow
+========
+
