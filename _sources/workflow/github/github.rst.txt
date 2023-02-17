@@ -5,14 +5,13 @@ Git / Github
 Introduction
 ============
 
-Testing 2
-
 All the repositories in AVO are stored under the AVOAudio Github organization. To begin to development, follow these steps:
 
 .. rst-class:: numbered-list
 
 #. Create a Github account if you do not have one yet.
-#. Setup SSH keys. This will be covered in detail in the :ref:`Generating SSH Keys <ssh keys>` Section below.
+#. Setup a personal access token. This will be covered in detail in the :ref:`Generating PATs <pat>` Section below.
+#. Optional: Setup SSH keys. This will be covered in detail in the :ref:`Generating SSH Keys <ssh keys>` Section below.
 #. Request an admin add your account to the AVOAudio Github organization and assign you to your team.
 #. Use TortoiseGit or run ``git clone --recurse-submodules https://github.com/avoaudio/avo.git`` to clone the code locally and begin development.
 
@@ -24,12 +23,44 @@ Your workflow will involve making changes, building locally using the provided d
 
 If you've finished all the changes needed to complete the ``Change Request`` you can start a pull request from Jira / Github to merge your branch into master.
 
+
+PAT vs SSH
+==========
+
+At this time the AVO repository has its submodule urls formatted as HTTPS endpoints. The reason for this is to allow the docker build system access to the repositories. Unfortunately, github does not have SSH authentication at an organizational level at this time. The only way to manage a separate SSH key that is strictly for AVOAudio would be to create a specialized builder account and setup SSH keys there. This is an option that is done by even github themselves but it feels messy.
+
+If in the future, github allows us to add SSH keys that belong to an organizational account we will switch from PATs to SSH.
+
+What's the difference?
+^^^^^^^^^^^^^^^^^^^^^^
+
+PATs (or Personal Access Tokens) are what is used to access HTTPS endpoints for cloning / pushing. SSH is for SSH endpoints only.
+
+An HTTPS endpoint looks like this:
+
+    ``https://github.com/AVOAudio/AVO``
+
+An SSH endpoint looks like this:
+
+    ``git@github.com:avoaudio/avo.git``
+
+You cannot use your SSH key to clone from an HTTPS endpoint or vice versa.
+
+.. _pat:
+
+Generating PATs
+===============
+
+TODO: This needs to be filled out.
+
 .. _ssh keys:
 
-Generating SSH Keys
-===================
+Generating SSH Keys (Optional)
+==============================
 
-To clone and later commit code to/from the AVOAudio organization, you need to two things:
+If you want to setup an SSH key and clone that way you can do so. However, since the submodule endpoints are currently HTTPS, you will need to modify your ``.gitmodules`` file to use the SSH endpoints and clone / push using your modified file. Do :emphasis:`NOT` push a ``.gitmodules`` file that has SSH endpoints as that will break the Docker release build system.
+
+To use SSH you need two things:
 
  - You must have an SSH key associated with your account.
  - You must be added to a team in the AVOAudio organization that has write access.
@@ -100,12 +131,11 @@ Now that we have told Github what our public key is we can clone the repository.
 
    TortoiseGit Clone AVO repo
 
-The URL can be either:
+The URL for SSH must be:
 
- - ``git@github.com:avoaudio/avo.git``
- - ``https://github.com/AVOAudio/AVO``
+    ``git@github.com:avoaudio/avo.git``
 
-The first one clones the repo through SSH (which you just set up). The second clones through HTTPS. It's recommended to check Load Putty Key and point to your private ppk that you saved earlier. Also, I'd recommend ensuring Recursive is checked to clone the submodules. If you want to do that separately after the fact you can do a Submodule update later.
+Ensure you check the ``Load Putty Key`` checkbox and point TortoiseGit to your private ppk that you saved earlier.
 
 Note: As mentioned earlier the second requirement is that you must be added to the AVOAudio organization. If you get authentication errors be sure to contact your administrator.
 

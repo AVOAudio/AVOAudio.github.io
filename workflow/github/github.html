@@ -50,7 +50,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../jira/jira.html">Jira</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Git / Github</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#generating-ssh-keys">Generating SSH Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pat-vs-ssh">PAT vs SSH</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-s-the-difference">What's the difference?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-pats">Generating PATs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-ssh-keys-optional">Generating SSH Keys (Optional)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-your-git-settings">Configuring your git settings</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#user-email">User / email</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#autocrlf">AutoCRLF</a></li>
@@ -92,11 +97,11 @@
 <h1>Git / Github<a class="headerlink" href="#git-github" title="Permalink to this heading"></a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
-<p>Testing 2</p>
 <p>All the repositories in AVO are stored under the AVOAudio Github organization. To begin to development, follow these steps:</p>
 <ol class="numbered-list arabic simple">
 <li><p>Create a Github account if you do not have one yet.</p></li>
-<li><p>Setup SSH keys. This will be covered in detail in the <a class="reference internal" href="#ssh-keys"><span class="std std-ref">Generating SSH Keys</span></a> Section below.</p></li>
+<li><p>Setup a personal access token. This will be covered in detail in the <a class="reference internal" href="#pat"><span class="std std-ref">Generating PATs</span></a> Section below.</p></li>
+<li><p>Optional: Setup SSH keys. This will be covered in detail in the <a class="reference internal" href="#ssh-keys"><span class="std std-ref">Generating SSH Keys</span></a> Section below.</p></li>
 <li><p>Request an admin add your account to the AVOAudio Github organization and assign you to your team.</p></li>
 <li><p>Use TortoiseGit or run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">--recurse-submodules</span> <span class="pre">https://github.com/avoaudio/avo.git</span></code> to clone the code locally and begin development.</p></li>
 </ol>
@@ -105,9 +110,32 @@
 <p>Your workflow will involve making changes, building locally using the provided docker script, flashing, and debugging. Once you are satisfied with your changes AND your code is in a <em>buildable</em> state, you can commit to the <code class="docutils literal notranslate"><span class="pre">AVO-#</span></code> branch you are working on.</p>
 <p>If you've finished all the changes needed to complete the <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Request</span></code> you can start a pull request from Jira / Github to merge your branch into master.</p>
 </section>
-<section id="generating-ssh-keys">
-<span id="ssh-keys"></span><h2>Generating SSH Keys<a class="headerlink" href="#generating-ssh-keys" title="Permalink to this heading"></a></h2>
-<p>To clone and later commit code to/from the AVOAudio organization, you need to two things:</p>
+<section id="pat-vs-ssh">
+<h2>PAT vs SSH<a class="headerlink" href="#pat-vs-ssh" title="Permalink to this heading"></a></h2>
+<p>At this time the AVO repository has its submodule urls formatted as HTTPS endpoints. The reason for this is to allow the docker build system access to the repositories. Unfortunately, github does not have SSH authentication at an organizational level at this time. The only way to manage a separate SSH key that is strictly for AVOAudio would be to create a specialized builder account and setup SSH keys there. This is an option that is done by even github themselves but it feels messy.</p>
+<p>If in the future, github allows us to add SSH keys that belong to an organizational account we will switch from PATs to SSH.</p>
+<section id="what-s-the-difference">
+<h3>What's the difference?<a class="headerlink" href="#what-s-the-difference" title="Permalink to this heading"></a></h3>
+<p>PATs (or Personal Access Tokens) are what is used to access HTTPS endpoints for cloning / pushing. SSH is for SSH endpoints only.</p>
+<p>An HTTPS endpoint looks like this:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">https://github.com/AVOAudio/AVO</span></code></p>
+</div></blockquote>
+<p>An SSH endpoint looks like this:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">git&#64;github.com:avoaudio/avo.git</span></code></p>
+</div></blockquote>
+<p>You cannot use your SSH key to clone from an HTTPS endpoint or vice versa.</p>
+</section>
+</section>
+<section id="generating-pats">
+<span id="pat"></span><h2>Generating PATs<a class="headerlink" href="#generating-pats" title="Permalink to this heading"></a></h2>
+<p>TODO: This needs to be filled out.</p>
+</section>
+<section id="generating-ssh-keys-optional">
+<span id="ssh-keys"></span><h2>Generating SSH Keys (Optional)<a class="headerlink" href="#generating-ssh-keys-optional" title="Permalink to this heading"></a></h2>
+<p>If you want to setup an SSH key and clone that way you can do so. However, since the submodule endpoints are currently HTTPS, you will need to modify your <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file to use the SSH endpoints and clone / push using your modified file. Do <em>NOT</em> push a <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file that has SSH endpoints as that will break the Docker release build system.</p>
+<p>To use SSH you need two things:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>You must have an SSH key associated with your account.</p></li>
@@ -175,14 +203,11 @@
 <p><span class="caption-text">TortoiseGit Clone AVO repo</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>The URL can be either:</p>
+<p>The URL for SSH must be:</p>
 <blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">git&#64;github.com:avoaudio/avo.git</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">https://github.com/AVOAudio/AVO</span></code></p></li>
-</ul>
+<div><p><code class="docutils literal notranslate"><span class="pre">git&#64;github.com:avoaudio/avo.git</span></code></p>
 </div></blockquote>
-<p>The first one clones the repo through SSH (which you just set up). The second clones through HTTPS. It's recommended to check Load Putty Key and point to your private ppk that you saved earlier. Also, I'd recommend ensuring Recursive is checked to clone the submodules. If you want to do that separately after the fact you can do a Submodule update later.</p>
+<p>Ensure you check the <code class="docutils literal notranslate"><span class="pre">Load</span> <span class="pre">Putty</span> <span class="pre">Key</span></code> checkbox and point TortoiseGit to your private ppk that you saved earlier.</p>
 <p>Note: As mentioned earlier the second requirement is that you must be added to the AVOAudio organization. If you get authentication errors be sure to contact your administrator.</p>
 </section>
 <section id="configuring-your-git-settings">
