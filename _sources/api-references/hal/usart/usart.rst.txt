@@ -28,7 +28,7 @@ The USART configuration is responsible for the setup of the USART hardware which
 
  typedef struct {
    USART_CHANNEL_ID_t channelID;
-   USART_CLK_SRC_t clkSrc;
+   USART_CLK_SRC_t clockSource;
    USART_BAUDRATE_t baudrate;
    DMA_SETUP_CFG_t* DMA_SETUP_CFG;
    IO_SETUP_CFG_t* IO_SETUP_CFG;
@@ -44,7 +44,7 @@ The USART configuration is responsible for the setup of the USART hardware which
    * - channel ID
      - Assign USART to a channel ID
    * - Clock Source
-     - Specify which kernal clock to use
+     - Specify which clock kernel to use
    * - Baudrate
      - Specify the baudrate that the USART will run on
    * - USART Features

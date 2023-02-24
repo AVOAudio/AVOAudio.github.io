@@ -114,7 +114,7 @@ full-duplex or half-duplex data exchange among different devices.</p>
 <p>The USART configuration is responsible for the setup of the USART hardware which is made up of the following members below:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">USART_CHANNEL_ID_t</span><span class="w"> </span><span class="n">channelID</span><span class="p">;</span>
-<span class="w">  </span><span class="n">USART_CLK_SRC_t</span><span class="w"> </span><span class="n">clkSrc</span><span class="p">;</span>
+<span class="w">  </span><span class="n">USART_CLK_SRC_t</span><span class="w"> </span><span class="n">clockSource</span><span class="p">;</span>
 <span class="w">  </span><span class="n">USART_BAUDRATE_t</span><span class="w"> </span><span class="n">baudrate</span><span class="p">;</span>
 <span class="w">  </span><span class="n">DMA_SETUP_CFG_t</span><span class="o">*</span><span class="w"> </span><span class="n">DMA_SETUP_CFG</span><span class="p">;</span>
 <span class="w">  </span><span class="n">IO_SETUP_CFG_t</span><span class="o">*</span><span class="w"> </span><span class="n">IO_SETUP_CFG</span><span class="p">;</span>
@@ -138,7 +138,7 @@ full-duplex or half-duplex data exchange among different devices.</p>
 <td><p>Assign USART to a channel ID</p></td>
 </tr>
 <tr class="row-odd"><td><p>Clock Source</p></td>
-<td><p>Specify which kernal clock to use</p></td>
+<td><p>Specify which clock kernel to use</p></td>
 </tr>
 <tr class="row-even"><td><p>Baudrate</p></td>
 <td><p>Specify the baudrate that the USART will run on</p></td>
