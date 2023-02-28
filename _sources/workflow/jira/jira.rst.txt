@@ -28,42 +28,61 @@ In Jira we have 5 different issue types:
      - .. image:: task.png
          :width: 20
          :align: center
-   * - ``Change Request``
-     - .. centered:: 3
-     - .. image:: change_request.png
-         :width: 20
-         :align: center
-   * - ``Investigation``
+   * - ``Investigation Record``
      - .. centered:: 3
      - .. image:: investigation.png
          :width: 20
          :align: center
+   * - ``Change Record``
+     - .. centered:: 3
+     - .. image:: change_record.png
+         :width: 20
+         :align: center
 
-The numbers beside the issue type indicate the hierarchy level within the company.
+The numbers beside the issue type indicate the hierarchy level in relation to the other issues types.
 
 ----
 
 Breakdown
 =========
-A ``Brigade`` *(1)* is a collection of tasks. This a top level concept.
+
+Level 1 Issues
+^^^^^^^^^^^^^^
+
+A ``Brigade`` *(1)* is a collection of tasks. This is a top level concept. No work is ever done directly within in a brigade and typically its child tasks are blocking it from becoming ``done``. A ``Brigade`` *(1)* can only go into the testing state if all its child tasks are in a ``done`` or ``Jim we aint doin it`` state. A ``Brigade`` *(1)* is not assignable.
+
+An example of a ``Brigade`` *(1)* would be:
+    Streamline Binary Builds
+
+Level 2 Issues
+^^^^^^^^^^^^^^
+
+Level 2 issues represent discrete units of work. These include ``Bugs`` *(2)* and ``Tasks`` *(2)*. Level 2 issues will have a solid description and be assignable. Level 2 issues will not include information about work done. They will always have one or more Level 3 issues associated with it. Level 3 issues are always of a report nature. They are what is used for accountability tracing and lets readers know exactly what was done and how.
+
+A ``Bug`` *(2)* is some issue that has been reported. A Bug's description will include what the issue is, or the behavior observed, and the steps to reproduce it.
+
+Note: A patched bug will always have a ``Change Record`` *(3)* associated with it to show what work was done. It could also have an ``Investigation Record`` *(3)* associated with it if it's unclear what is causing the undesirable behavior. If it's a quick patch that doesn't require an investigation, the bug would only have a ``Change Record`` *(3)* associated with it.
+
+A ``Task`` *(2)* is a specific task or feature that is part of the ``Brigade``. Tasks always have one or more ``Change Records`` *(3)* associated with it. Be careful as you're adding more ``Change Records`` *(3)* as this may indicate that the scope of the task is too big. Try to keep the work size for ``Tasks`` *(2)* small and discrete.
 
 An example of this would be:
-    Get Infrared communication working
+    Build a docker container for local builds
 
-A ``Bug`` *(2)* is some issue that has been reported. A Bug's description will include exactly what the issue is and the steps to reproduce. A bug will trigger an ``Investigation`` sub-task.
+Level 3 Issues
+^^^^^^^^^^^^^^
 
-A ``Task`` *(2)* is a specific task or feature that is part of the ``Brigade``. An example of this would be:
+Level 3 issues are always of a report nature. They are what should be looked at if someone wants a detailed explanation of the work that was done.
 
-An example of this would be:
-    Get Infrared communication working
+An ``Investigation Record`` *(3)* is a record of work done where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug. It NEVER involves code changes. If you need to code something up to do some testing for your investigation and you wish to commit this work to the repo, you must have a sister ``Change Record`` *(3)* underneath the ``Bug`` *(2)* or ``Task`` *(2)*.
 
-A ``Change Request`` *(3)* specifies exactly how you would go about the task and what steps were required to attain a solution. It is the ultimate form of accountability. The unique ID generated for ``Change Requests`` is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:
+A ``Change Record`` *(3)* specifies exactly how you go about doing the work and what steps were done to attain a solution. It is the ultimate form of accountability. The unique ID generated for ``Change Requests`` *(3)* is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:
 
 An example of this would be:
     Use PWM's Input Capture mode to decode the IR signal received from the IR hardware module.
 
-An ``Investigation`` *(3)* is some work where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug.
+Note: It is very common that a ``Change Record`` *(3)* would have the same name as their parent ``Task`` *(2)* or ``Bug`` *(2)*.
 
 Workflow
 ========
 
+Each Level 2 issue is always assigned to only one person. If we have people collaborating on a Level 2 issue, they would each get their own duplicate of the issue. Additionally, the ``Change Record`` or ``Investigation Record`` associated with those tasks would always be linked in both Level 2 issues.

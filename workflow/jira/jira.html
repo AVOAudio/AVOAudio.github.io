@@ -50,7 +50,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../workflow.html">Workflow</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Jira</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#breakdown">Breakdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#breakdown">Breakdown</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#level-1-issues">Level 1 Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#level-2-issues">Level 2 Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#level-3-issues">Level 3 Issues</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#workflow">Workflow</a></li>
 </ul>
 </li>
@@ -123,45 +128,59 @@
 <td><a class="reference internal image-reference" href="../../_images/task.png"><img alt="../../_images/task.png" class="align-center" src="../../_images/task.png" style="width: 20px;" /></a>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Request</span></code></p></td>
-<td><p class="centered">
-<strong>3</strong></p></td>
-<td><a class="reference internal image-reference" href="../../_images/change_request.png"><img alt="../../_images/change_request.png" class="align-center" src="../../_images/change_request.png" style="width: 20px;" /></a>
-</td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Investigation</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Investigation</span> <span class="pre">Record</span></code></p></td>
 <td><p class="centered">
 <strong>3</strong></p></td>
 <td><a class="reference internal image-reference" href="../../_images/investigation.png"><img alt="../../_images/investigation.png" class="align-center" src="../../_images/investigation.png" style="width: 20px;" /></a>
 </td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code></p></td>
+<td><p class="centered">
+<strong>3</strong></p></td>
+<td><a class="reference internal image-reference" href="../../_images/change_record.png"><img alt="../../_images/change_record.png" class="align-center" src="../../_images/change_record.png" style="width: 20px;" /></a>
+</td>
+</tr>
 </tbody>
 </table>
-<p>The numbers beside the issue type indicate the hierarchy level within the company.</p>
+<p>The numbers beside the issue type indicate the hierarchy level in relation to the other issues types.</p>
 </section>
 <hr class="docutils" />
 <section id="breakdown">
 <h2>Breakdown<a class="headerlink" href="#breakdown" title="Permalink to this heading"></a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">Brigade</span></code> <em>(1)</em> is a collection of tasks. This a top level concept.</p>
+<section id="level-1-issues">
+<h3>Level 1 Issues<a class="headerlink" href="#level-1-issues" title="Permalink to this heading"></a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">Brigade</span></code> <em>(1)</em> is a collection of tasks. This is a top level concept. No work is ever done directly within in a brigade and typically its child tasks are blocking it from becoming <code class="docutils literal notranslate"><span class="pre">done</span></code>. A <code class="docutils literal notranslate"><span class="pre">Brigade</span></code> <em>(1)</em> can only go into the testing state if all its child tasks are in a <code class="docutils literal notranslate"><span class="pre">done</span></code> or <code class="docutils literal notranslate"><span class="pre">Jim</span> <span class="pre">we</span> <span class="pre">aint</span> <span class="pre">doin</span> <span class="pre">it</span></code> state. A <code class="docutils literal notranslate"><span class="pre">Brigade</span></code> <em>(1)</em> is not assignable.</p>
 <dl class="simple">
-<dt>An example of this would be:</dt><dd><p>Get Infrared communication working</p>
+<dt>An example of a <code class="docutils literal notranslate"><span class="pre">Brigade</span></code> <em>(1)</em> would be:</dt><dd><p>Streamline Binary Builds</p>
 </dd>
 </dl>
-<p>A <code class="docutils literal notranslate"><span class="pre">Bug</span></code> <em>(2)</em> is some issue that has been reported. A Bug's description will include exactly what the issue is and the steps to reproduce. A bug will trigger an <code class="docutils literal notranslate"><span class="pre">Investigation</span></code> sub-task.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">Task</span></code> <em>(2)</em> is a specific task or feature that is part of the <code class="docutils literal notranslate"><span class="pre">Brigade</span></code>. An example of this would be:</p>
+</section>
+<section id="level-2-issues">
+<h3>Level 2 Issues<a class="headerlink" href="#level-2-issues" title="Permalink to this heading"></a></h3>
+<p>Level 2 issues represent discrete units of work. These include <code class="docutils literal notranslate"><span class="pre">Bugs</span></code> <em>(2)</em> and <code class="docutils literal notranslate"><span class="pre">Tasks</span></code> <em>(2)</em>. Level 2 issues will have a solid description and be assignable. Level 2 issues will not include information about work done. They will always have one or more Level 3 issues associated with it. Level 3 issues are always of a report nature. They are what is used for accountability tracing and lets readers know exactly what was done and how.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Bug</span></code> <em>(2)</em> is some issue that has been reported. A Bug's description will include what the issue is, or the behavior observed, and the steps to reproduce it.</p>
+<p>Note: A patched bug will always have a <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> <em>(3)</em> associated with it to show what work was done. It could also have an <code class="docutils literal notranslate"><span class="pre">Investigation</span> <span class="pre">Record</span></code> <em>(3)</em> associated with it if it's unclear what is causing the undesirable behavior. If it's a quick patch that doesn't require an investigation, the bug would only have a <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> <em>(3)</em> associated with it.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Task</span></code> <em>(2)</em> is a specific task or feature that is part of the <code class="docutils literal notranslate"><span class="pre">Brigade</span></code>. Tasks always have one or more <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Records</span></code> <em>(3)</em> associated with it. Be careful as you're adding more <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Records</span></code> <em>(3)</em> as this may indicate that the scope of the task is too big. Try to keep the work size for <code class="docutils literal notranslate"><span class="pre">Tasks</span></code> <em>(2)</em> small and discrete.</p>
 <dl class="simple">
-<dt>An example of this would be:</dt><dd><p>Get Infrared communication working</p>
+<dt>An example of this would be:</dt><dd><p>Build a docker container for local builds</p>
 </dd>
 </dl>
-<p>A <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Request</span></code> <em>(3)</em> specifies exactly how you would go about the task and what steps were required to attain a solution. It is the ultimate form of accountability. The unique ID generated for <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Requests</span></code> is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:</p>
+</section>
+<section id="level-3-issues">
+<h3>Level 3 Issues<a class="headerlink" href="#level-3-issues" title="Permalink to this heading"></a></h3>
+<p>Level 3 issues are always of a report nature. They are what should be looked at if someone wants a detailed explanation of the work that was done.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">Investigation</span> <span class="pre">Record</span></code> <em>(3)</em> is a record of work done where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug. It NEVER involves code changes. If you need to code something up to do some testing for your investigation and you wish to commit this work to the repo, you must have a sister <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> <em>(3)</em> underneath the <code class="docutils literal notranslate"><span class="pre">Bug</span></code> <em>(2)</em> or <code class="docutils literal notranslate"><span class="pre">Task</span></code> <em>(2)</em>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> <em>(3)</em> specifies exactly how you go about doing the work and what steps were done to attain a solution. It is the ultimate form of accountability. The unique ID generated for <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Requests</span></code> <em>(3)</em> is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:</p>
 <dl class="simple">
 <dt>An example of this would be:</dt><dd><p>Use PWM's Input Capture mode to decode the IR signal received from the IR hardware module.</p>
 </dd>
 </dl>
-<p>An <code class="docutils literal notranslate"><span class="pre">Investigation</span></code> <em>(3)</em> is some work where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug.</p>
+<p>Note: It is very common that a <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> <em>(3)</em> would have the same name as their parent <code class="docutils literal notranslate"><span class="pre">Task</span></code> <em>(2)</em> or <code class="docutils literal notranslate"><span class="pre">Bug</span></code> <em>(2)</em>.</p>
+</section>
 </section>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h2>
+<p>Each Level 2 issue is always assigned to only one person. If we have people collaborating on a Level 2 issue, they would each get their own duplicate of the issue. Additionally, the <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">Record</span></code> or <code class="docutils literal notranslate"><span class="pre">Investigation</span> <span class="pre">Record</span></code> associated with those tasks would always be linked in both Level 2 issues.</p>
 </section>
 </section>
 
