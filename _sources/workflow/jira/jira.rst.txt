@@ -2,6 +2,10 @@
 Jira
 ****
 
+TODO:
+ - Add images for the examples
+ - Expand Workflow section and add images
+
 Introduction
 ============
 In Jira we have 5 different issue types:
@@ -49,21 +53,25 @@ Breakdown
 Level 1 Issues
 ^^^^^^^^^^^^^^
 
-A ``Brigade`` *(1)* is a collection of tasks. This is a top level concept. No work is ever done directly within in a brigade and typically its child tasks are blocking it from becoming ``done``. A ``Brigade`` *(1)* can only go into the testing state if all its child tasks are in a ``done`` or ``Jim we aint doin it`` state. A ``Brigade`` *(1)* is not assignable.
+A ``Brigade`` *(1)* is a collection of tasks. This is a top level concept. No work is ever done directly within in a brigade and typically its child tasks are blocking it from becoming ``done``. A ``Brigade`` *(1)* can only go into the testing state if all its child tasks are in one of two states: ``done`` or ``Jim we aint doin it``. A ``Brigade`` *(1)* is not assignable.
 
 An example of a ``Brigade`` *(1)* would be:
-    Streamline Binary Builds
+
+    .. image:: brigade_example.png
+       :align: center
 
 Level 2 Issues
 ^^^^^^^^^^^^^^
 
-Level 2 issues represent discrete units of work. These include ``Bugs`` *(2)* and ``Tasks`` *(2)*. Level 2 issues will have a solid description and be assignable. Level 2 issues will not include information about work done. They will always have one or more Level 3 issues associated with it. Level 3 issues are always of a report nature. They are what is used for accountability tracing and lets readers know exactly what was done and how.
+Level 2 issues represent discrete units of work. These include ``Bugs`` *(2)* and ``Tasks`` *(2)*. Level 2 issues will have a non-ambiguous description and be assignable. Level 2 issues will not include information about work done. They will always have one or more Level 3 issues associated with it. Level 3 issues are always of a report nature. They are what is used for accountability/traceability and lets readers/developers know exactly what was done and how.
 
-A ``Bug`` *(2)* is some issue that has been reported. A Bug's description will include what the issue is, or the behavior observed, and the steps to reproduce it.
+A ``Bug`` *(2)* is an issue that has been reported. A ``Bug`` *(2)* has a description that will include what the issue is, or the behavior observed, and the steps to reproduce it.
 
-Note: A patched bug will always have a ``Change Record`` *(3)* associated with it to show what work was done. It could also have an ``Investigation Record`` *(3)* associated with it if it's unclear what is causing the undesirable behavior. If it's a quick patch that doesn't require an investigation, the bug would only have a ``Change Record`` *(3)* associated with it.
+.. Note:: Once a ``Bug`` *(2)* reaches the ``done`` state it is considered patched. A patched ``Bug`` *(2)* will always have a ``Change Record`` *(3)* associated with it to show what work was done. It could also have an ``Investigation Record`` *(3)* associated with it if it's unclear what is causing the undesirable behavior. If it's a quick patch that doesn't require an investigation, the ``Bug`` *(2)* would only have a ``Change Record`` *(3)* associated with it.
 
-A ``Task`` *(2)* is a specific task or feature that is part of the ``Brigade``. Tasks always have one or more ``Change Records`` *(3)* associated with it. Be careful as you're adding more ``Change Records`` *(3)* as this may indicate that the scope of the task is too big. Try to keep the work size for ``Tasks`` *(2)* small and discrete.
+A ``Task`` *(2)* is a specific task or feature that is part of the ``Brigade``. Tasks always have one or more ``Change Records`` *(3)* associated with it.
+
+.. Tip:: Be careful as you're adding more ``Change Records`` *(3)* as this may indicate that the scope of the task is too big. Try to keep the work size for ``Tasks`` *(2)* small and discrete.
 
 An example of this would be:
     Build a docker container for local builds
@@ -71,16 +79,16 @@ An example of this would be:
 Level 3 Issues
 ^^^^^^^^^^^^^^
 
-Level 3 issues are always of a report nature. They are what should be looked at if someone wants a detailed explanation of the work that was done.
+Level 3 issues are always of a report nature. They are what should be looked at if someone wants a detailed explanation of the work that was done. Level 3 issues are not assignable.
 
-An ``Investigation Record`` *(3)* is a record of work done where we are seeking knowledge or know-how for how to do a task or to figure out what is causing a bug. It NEVER involves code changes. If you need to code something up to do some testing for your investigation and you wish to commit this work to the repo, you must have a sister ``Change Record`` *(3)* underneath the ``Bug`` *(2)* or ``Task`` *(2)*.
+An ``Investigation Record`` *(3)* is a record of work done where we are seeking knowledge for how to do a ``Task`` *(2)* or to figure out what is causing a ``Bug`` *(2)*. It *NEVER* involves code changes. If you need to code something up to do some testing for your investigation and you wish to commit this work to the repo, you must have a sister ``Change Record`` *(3)* underneath the ``Bug`` *(2)* or ``Task`` *(2)*.
 
-A ``Change Record`` *(3)* specifies exactly how you go about doing the work and what steps were done to attain a solution. It is the ultimate form of accountability. The unique ID generated for ``Change Requests`` *(3)* is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:
+A ``Change Record`` *(3)* specifies exactly how you go about doing the work and what steps were done to attain a solution. It is the ultimate form of accountability. This accountability includes the justification for the existence of the change. As such, the description of a ``Change Record`` *(3)* must include this justification. The unique ID generated for ``Change Requests`` *(3)* is what is used to track your work. It is the branch name within the avo.git repo. An example of this would be:
 
 An example of this would be:
     Use PWM's Input Capture mode to decode the IR signal received from the IR hardware module.
 
-Note: It is very common that a ``Change Record`` *(3)* would have the same name as their parent ``Task`` *(2)* or ``Bug`` *(2)*.
+.. Note:: It is very common that a ``Change Record`` *(3)* would have the same name as their parent ``Task`` *(2)* or ``Bug`` *(2)*.
 
 Workflow
 ========
