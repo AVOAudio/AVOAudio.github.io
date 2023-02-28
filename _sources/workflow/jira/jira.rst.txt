@@ -5,6 +5,7 @@ Jira
 TODO:
  - Add images for the examples
  - Expand Workflow section and add images
+ - Make issue numbers subscript and link them back to the table
 
 Introduction
 ============
