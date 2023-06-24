@@ -14,6 +14,8 @@ Software
 ^^^^^^^^
 All our repos are stored in the AVOAudio organization on Github. To clone the software and begin development follow the instructions in the :doc:`Github Workflow </workflow/github/github>`.
 
+You will also need to install docker to be able to build and flash to the microcontroller. Installing docker is OS specific and may require modification to the BIOS settings. Refer to the docker website for guidance.
+
 Installation
 ============
 IDE
@@ -21,7 +23,18 @@ IDE
 Manual Installation
 ^^^^^^^^^^^^^^^^^^^
 
-Build Your First
-================
+Build Your First Binary
+=======================
+To build your first binary:
+ - Navigate to the avo repository
+ - Checkout a commit with some functioning code (official tagged releases may be a good starting point)
+ - Be sure to update and initialize all submodules
+ - Next we're going to run some scripts. Be sure to run the appropriate script for your operating system.
+    - Go to the Docker folder and run the ``docker_update_file_list`` script.
+    - Run the ``docker_make`` script.
 
+And that's it! You will see an AVO.elf file generated in a new build folder at the root level of the project.
 
+If you want to flash the binary to a microcontroller, plug in the appropriate usb cable into the STLink side of the board. Ensure the jumper is set to STLink. Then run the ``docker_flash`` script from the same Docker subfolder.
+
+If you wish to debug something you can run the ``docker_debug`` script

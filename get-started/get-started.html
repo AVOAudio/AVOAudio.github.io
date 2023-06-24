@@ -56,7 +56,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#manual-installation">Manual Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#build-your-first">Build Your First</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-your-first-binary">Build Your First Binary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api-references/api-references.html">API References</a></li>
@@ -101,6 +101,7 @@
 <section id="software">
 <h3>Software<a class="headerlink" href="#software" title="Permalink to this heading"></a></h3>
 <p>All our repos are stored in the AVOAudio organization on Github. To clone the software and begin development follow the instructions in the <a class="reference internal" href="../workflow/github/github.html"><span class="doc">Github Workflow</span></a>.</p>
+<p>You will also need to install docker to be able to build and flash to the microcontroller. Installing docker is OS specific and may require modification to the BIOS settings. Refer to the docker website for guidance.</p>
 </section>
 </section>
 <section id="installation">
@@ -112,8 +113,27 @@
 <h3>Manual Installation<a class="headerlink" href="#manual-installation" title="Permalink to this heading"></a></h3>
 </section>
 </section>
-<section id="build-your-first">
-<h2>Build Your First<a class="headerlink" href="#build-your-first" title="Permalink to this heading"></a></h2>
+<section id="build-your-first-binary">
+<h2>Build Your First Binary<a class="headerlink" href="#build-your-first-binary" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>To build your first binary:</dt><dd><ul class="simple">
+<li><p>Navigate to the avo repository</p></li>
+<li><p>Checkout a commit with some functioning code (official tagged releases may be a good starting point)</p></li>
+<li><p>Be sure to update and initialize all submodules</p></li>
+<li><dl class="simple">
+<dt>Next we're going to run some scripts. Be sure to run the appropriate script for your operating system.</dt><dd><ul>
+<li><p>Go to the Docker folder and run the <code class="docutils literal notranslate"><span class="pre">docker_update_file_list</span></code> script.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">docker_make</span></code> script.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>And that's it! You will see an AVO.elf file generated in a new build folder at the root level of the project.</p>
+<p>If you want to flash the binary to a microcontroller, plug in the appropriate usb cable into the STLink side of the board. Ensure the jumper is set to STLink. Then run the <code class="docutils literal notranslate"><span class="pre">docker_flash</span></code> script from the same Docker subfolder.</p>
+<p>If you wish to debug something you can run the <code class="docutils literal notranslate"><span class="pre">docker_debug</span></code> script</p>
 </section>
 </section>
 
